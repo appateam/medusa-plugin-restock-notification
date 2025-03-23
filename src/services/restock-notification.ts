@@ -35,6 +35,27 @@ class RestockNotificationService extends TransactionBaseService {
   }
 
   /**
+   * Lists all restock notifications
+   * @param selector - an object that defines rules to filter restock notifications by
+   * @param config - object that defines the scope for what should be returned
+   * @return {Promise<RestockNotification[]>} The restock notification
+   */
+  async listAll(
+    selector = {},
+    config: FindConfig<RestockNotification> = {
+      relations: [],
+      skip: 0,
+      take: 20,
+    }
+  ): Promise<RestockNotification[]> {
+    return this.atomicPhase_(async (manager) => {
+      const restockRepo = manager.getRepository(RestockNotification)
+      const query = buildQuery(selector, config)
+      return await restockRepo.find({ ...query });
+    })
+  }
+
+  /**
    * Lists restock notifications with a given variant ID.
    * @param {string} variantId - the variant ID to retrieve restock notifications for
    * @param selector - an object that defines rules to filter restock notifications by
