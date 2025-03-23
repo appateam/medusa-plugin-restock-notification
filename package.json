@@ -1,6 +1,6 @@
 {
   "name": "@appateam/medusa-plugin-restock-notification",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Add restock notifications to your Medusa store",
   "author": "Kevin Furmanski <kevin@appateam.com>",
   "license": "MIT",
